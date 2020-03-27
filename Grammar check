@@ -1,0 +1,95 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+   char str[100][100];
+   //printf("enter a word\n");
+  // scanf("%s",str);
+   int i,l,l1,j,count=0,count1=0,y=0,y1=0,co=0,p=0,x=0,loop=0,i1,choice;
+   char s[100];char sub[100];
+   char word[100];
+   char w[45],w1[45]={'\n'},w2[45],w3[45],w4[45]={'\n'};
+   int f1[26]={0},f2[26]={0},f[26]={0};
+   char path[100]="C:\\Users\\PRATYUSH\\Desktop\\EXTRA\\devc\\";
+   char path1[100]="C:\\Users\\PRATYUSH\\Desktop\\EXTRA\\devc\\";
+   printf("enter a file\n");
+   scanf("%s",s);
+   char c,d,e;
+strcat(path,s);
+   FILE *fp,*fp1,*fp2,*fp3; 
+   fp = fopen(path, "r"); 
+   fp2 = fopen(path, "r");
+ 
+  fp1 = fopen(path, "r"); 
+  fp3 = fopen(path, "r");
+  printf("THIS IS YOUR FILE\n");
+  while (fscanf(fp3, "%s", w4) != EOF)// D WHILE
+        {
+        	printf("%s ",w4);
+        }
+        printf("\n");
+        printf("\n");
+        printf("\n");
+  printf("Please enter 1 to begin grammar checks and suggestions or enter 0 to terminate the program\n");
+scanf("%d",&choice);
+if(choice==1)
+{
+	
+	while (fscanf(fp1, "%s", w1) != EOF)// D WHILE
+        {//printf("\n %s\n",w1);
+        
+        y=y+1;
+        for(i=0;i<45;i++)
+        
+        {
+        	i1=i+1;
+        	
+        	if(w1[i]==44||w1[i]==46||w1[i]=='\n')
+        	{
+        		break;
+			}
+			w2[i]=w1[i];
+		}
+		 l=strlen(w2);
+		 if(y==1)
+		 {
+		 	if(w2[0]>=97&&w2[0]<=122)
+		 	{printf("ERROR!!!\n");
+		 		printf("#The first letter of your text should start with a capital letter\n");
+			 }
+		 }
+	}//MAIN WHILE ENDS
+	fclose(fp1);
+		while (fscanf(fp, "%s", w) != EOF)// SECOND WHILE
+        {//printf("\n %s\n",w1);
+        //printf("word is %s\n",w);
+                 strcpy(str[p],w);
+                 p=p+1;
+    
+      }//SECOND WHILE CLOSES
+	fclose(fp);
+	//printf("value of p is %d\n",p);
+	for(i=0;i<p;i++)
+	{
+		l=strlen(str[i]);
+		if(str[i][l-1]==46)
+		{
+			if(i+1<p)
+			{
+				if(str[i+1][0]>=97 && str[i+1][0]<=122)
+				{
+					printf("ERROR!!!\n");
+					printf("#The first letter of %s should be capital\n",str[i+1]);
+				}
+			}
+		}
+	}
+l=strlen(str[p-1]);
+if(str[p-1][l-1]!=46){
+printf("ERROR!!!\n");
+printf("#There should be a full stop after %s\n",str[p-1]);}
+	//printf("%s ",str[0]);	 
+}//user choice closes
+return 0;
+}//int main closes
