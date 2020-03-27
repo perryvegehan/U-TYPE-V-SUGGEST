@@ -1,0 +1,166 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+   char str[100][100];
+   char list[1000][100];
+   int sug=0,sugchoice=0;
+   //printf("enter a word\n");
+  // scanf("%s",str);
+   int i,k,l,l1,j,count=0,count1=0,y=0,y1=0,co=0,p=0,x=0,loop=0,i1,choice,m,m1;
+   char s[100];char sub[100];
+   char word[100];
+   char w[45],w1[45]={'\n'},w2[45],w3[45],w4[45]={'\n'};
+   int f1[26]={0},f2[26]={0},f[26]={0};
+   //char path[100]="C:\\Users\\PRATYUSH\\Desktop\\EXTRA\\devc\\NEW TEXT\\new.text";
+   char path1[100]="C:\\Users\\PRATYUSH\\Desktop\\EXTRA\\devc\\NEW TEXT\\new.text";
+   char newfile[20]="new";
+   char c,d,e;
+char path[100]="C:\\Users\\PRATYUSH\\Desktop\\EXTRA\\devc\\";
+   printf("enter a file\n");
+   scanf("%s",s);
+   strcat(path,s);
+   strcat(newfile,s);
+   strcat(path1,newfile);
+   FILE *fp,*fp1,*fp2,*fp3,*fp4,*fpwrite; 
+   fp = fopen("dict.txt", "r"); 
+   fp2 = fopen("dict.txt", "r");
+ fpwrite = fopen(path1, "w");
+  fp1 = fopen(path, "r"); 
+  fp3 = fopen(path, "r");
+  printf("THIS IS YOUR FILE\n");
+  while (fscanf(fp3, "%s", w4) != EOF)// D WHILE
+        {
+        	printf("%s ",w4);
+        }
+        printf("\n");
+        printf("\n");
+        printf("\n");
+
+	    
+   while (fscanf(fp1, "%s", w1) != EOF)// D WHILE
+        {//printf("\n %s\n",w1);
+        
+        
+        for(i=0;i<45;i++)
+        
+        {
+        	i1=i+1;
+        	
+        	if(w1[i]==44||w1[i]==46||w1[i]=='\n')
+        	{
+        		break;
+			}
+			w2[i]=w1[i];
+		}
+		 l=strlen(w2);
+		 //printf("word is %s\n",w2);
+        	while (fscanf(fp, "%s", w) != EOF)
+            {
+            //	printf("\n %s \n",w);
+            	if(strcasecmp(w,w2)==0)
+            	{
+            		p=1;
+				}
+	
+			}            
+        if(p==1)
+			 {
+			 	p=0;
+			 	//fp4 = fopen(path, "a");
+			 	fputs(w2, fpwrite);
+			 		fputs(" ",fpwrite);
+			 		//fclose(fp4);
+			 	//printf("%s  mil gaya\n",w2);
+			 }
+			 else
+			 {x=0;
+			 	printf("It seems you have misspelled  %s\n",w2);
+			 	strcpy(str[sug],w2);
+			 	sug++;
+			 	while (fscanf(fp2, "%s", w3) != EOF)//SUGGESTION START
+        	{
+        		l1=strlen(w3);
+        		l=strlen(w2);
+        		for (i = 0; i < l; i++) 
+                    f1[w2[i] - 'a']++;
+			    for (i = 0; i < l1; i++) 
+                    f2[w3[i] - 'a']++; 
+                for (i =0; i <26; i++) 
+                {
+                	if(f1[i]>f2[i])
+                	f[i]=f2[i];
+                	else
+                	f[i]=f1[i];
+				}
+				for (i = 0; i < 26; i++)
+				 count=count+f[i];
+				 if(l==2||l==3)
+				 {
+				 	if(l==l1)
+				 	{
+				 		if(w2[0]==w3[0])
+				 		{
+						 
+				 		if(count>1){
+						 
+				 		//printf("%s\n",w3);
+				 		strcpy(list[x],w3);
+				 		x++;
+						 }
+						 }
+					 }
+				 }
+				 
+				 
+				 if(l>3)
+		{
+		if(l-l1==0||l-l1==1||l-l1==2||l-l1==-1||l-l1==-2)
+			{
+			if(w2[0]==w3[0]||w2[0]==(w3[0]+32)||w2[0]==(w3[0]-32))
+{
+	//printf("first\n");
+	//printf("%s  pehla wala\n",w3);
+if(w2[l-1]==w3[l1-1]||w2[l-1]==(w3[l1-1]+32)||w2[l-1]==(w3[l1-1]-32))
+{
+	
+	if(count>=l-1){
+	
+				 		//printf("%s\n",w3);
+						 strcpy(list[x],w3);
+						 x++;
+						 }
+		 }		 
+		}
+			}// PENULTIMATE IF
+			}// LAST IF
+			count=0;
+				 memset(f1, 0, sizeof(f1));
+				 memset(f2, 0, sizeof(f2));
+				 memset(f, 0, sizeof(f));
+			}//SUGGESTION WHILE CLOSES
+			 	//printf("Here are some of the suggestions\n");
+			 	for(m=0;m<x;m++)
+			{
+			m1=m+1;
+				printf("%d. %s\n",m1,list[m]);
+			}
+			printf("enter the index of the word you originally meant\n");
+			scanf("%d",&sugchoice);
+			fputs(list[sugchoice-1], fpwrite);
+			 		fputs(" ",fpwrite);
+			 }//ELSE CLOSES
+			 
+			 rewind(fp);
+			 rewind(fp2);
+		}//COMPARE WHILE ENDS
+		//printf("value of sug is %d\n",sug);
+        printf("\n");
+        printf("\n");
+		printf("\n");
+		 fclose(fp);
+        fclose(fp1);
+        fclose(fpwrite);
+        return 0;
+    }
