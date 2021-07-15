@@ -1,5 +1,5 @@
 # U-TYPE-V-SUGGEST
-A command line based application written in C to provide certain functionalities on a written English piece. The mentioned functionalities include spelling mistake identification and their rectification based on a suggestion algorithm, finding the word token count and rectifying basic grammatical and syntactical errors.
+A team effort to develop a command line based application written in C to provide certain functionalities on a written English piece. The mentioned functionalities include spelling mistake identification and their rectification based on a suggestion algorithm, finding the word token count and rectifying basic grammatical and syntactical errors.
 
 THE SUGGESTIONS:
 This is the most interesting part. We aim to provide 10 suggestions for a given wrong spelled word. The suggestions should be arranged so as the most obvious one should be the first and so on.
